@@ -1,0 +1,599 @@
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes electricPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 10px rgba(59, 130, 246, 0.5),
+      0 0 20px rgba(59, 130, 246, 0.3),
+      inset 0 0 10px rgba(59, 130, 246, 0.1),
+      0 0 30px rgba(99, 102, 241, 0.2);
+    border-color: rgba(59, 130, 246, 0.6);
+  }
+  50% {
+    box-shadow: 
+      0 0 20px rgba(59, 130, 246, 0.8),
+      0 0 40px rgba(59, 130, 246, 0.5),
+      inset 0 0 20px rgba(59, 130, 246, 0.2),
+      0 0 50px rgba(99, 102, 241, 0.4);
+    border-color: rgba(59, 130, 246, 1);
+  }
+}
+
+@keyframes electricFlicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  12% {
+    opacity: 0.95;
+  }
+  25% {
+    opacity: 1;
+  }
+  37% {
+    opacity: 0.92;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes shootingStar {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(400px, 400px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes shootingStarTail {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    width: 80px;
+  }
+  90% {
+    opacity: 1;
+    width: 80px;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes floatCard {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    filter: brightness(1) drop-shadow(0 0 10px rgba(59, 130, 246, 0.3));
+  }
+  50% {
+    filter: brightness(1.1) drop-shadow(0 0 20px rgba(59, 130, 246, 0.5));
+  }
+}
+
+@keyframes cardBorderGlow {
+  0%, 100% {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+}
+
+.pricing-section {
+  padding: 6rem 0 10rem;
+  background: linear-gradient(-45deg, #010411 0%, #050820 25%, #081a4d 50%, #030d26 75%, #010411 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, white, rgba(255, 255, 255, 0)),
+    radial-gradient(2px 2px at 60% 70%, white, rgba(255, 255, 255, 0)),
+    radial-gradient(1px 1px at 50% 50%, white, rgba(255, 255, 255, 0)),
+    radial-gradient(1px 1px at 80% 10%, white, rgba(255, 255, 255, 0)),
+    radial-gradient(2px 2px at 90% 60%, white, rgba(255, 255, 255, 0)),
+    radial-gradient(1px 1px at 30% 80%, white, rgba(255, 255, 255, 0)),
+    radial-gradient(1px 1px at 15% 50%, white, rgba(255, 255, 255, 0)),
+    radial-gradient(2px 2px at 70% 40%, white, rgba(255, 255, 255, 0)),
+    radial-gradient(1px 1px at 40% 20%, white, rgba(255, 255, 255, 0)),
+    radial-gradient(1px 1px at 85% 85%, white, rgba(255, 255, 255, 0));
+  background-repeat: repeat;
+  background-size: 200% 200%;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+.pricing-section {
+  padding: 6rem 0 10rem;
+  background: linear-gradient(-45deg, #020817 0%, #0a1438 25%, #0f2a6b 50%, #051240 75%, #020817 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-section::before {
+  content: "ALPHA EDIT";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.03);
+  letter-spacing: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+  animation: gradientShift 20s ease infinite reverse;
+}
+
+.section-header {
+  position: relative;
+  z-index: 1;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: stretch;
+  position: relative;
+  z-index: 1;
+  perspective: 1300px;
+}
+
+.shooting-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.shooting-star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: radial-gradient(circle, #60a5fa 0%, rgba(96, 165, 250, 0.5) 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 20px 4px rgba(96, 165, 250, 0.6), 0 0 40px 8px rgba(59, 130, 246, 0.3);
+  left: 10%;
+  top: 20%;
+  animation: shootingStar 3s ease-in-out infinite;
+}
+
+.shooting-star::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 1px;
+  background: linear-gradient(to right, rgba(96, 165, 250, 0), rgba(96, 165, 250, 0.8), rgba(96, 165, 250, 0));
+  animation: shootingStarTail 3s ease-in-out infinite;
+}
+
+.parallax-star {
+  position: absolute;
+  pointer-events: none;
+  color: rgba(96, 165, 250, 0.4);
+  filter: drop-shadow(0 0 20px rgba(96, 165, 250, 0.3));
+  z-index: 0;
+  transition: filter 0.3s ease;
+}
+
+.parallax-star:hover {
+  filter: drop-shadow(0 0 40px rgba(96, 165, 250, 0.6));
+  color: rgba(96, 165, 250, 0.7);
+}
+
+.parallax-star.left {
+  left: -80px;
+  top: 50%;
+}
+
+.parallax-star.right {
+  right: -60px;
+  top: 40%;
+}
+
+.pricing-card {
+  padding: 3.25rem 2rem 3rem;
+  border-radius: 18px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: floatCard 4s ease-in-out infinite, cardBorderGlow 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+.pricing-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(130deg, rgba(255, 255, 255, 0.11), transparent 28%),
+    radial-gradient(circle at 50% 0%, rgba(217, 253, 49, 0.1), transparent 38%);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  pointer-events: none;
+}
+
+.pricing-card:hover {
+  border-color: rgba(217, 253, 49, 0.35);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.38), 0 0 36px rgba(217, 253, 49, 0.1);
+  transform: translateY(-12px) rotateX(2deg);
+}
+
+.pricing-card:hover::after {
+  opacity: 1;
+}
+
+.pricing-card.highlight {
+  border-color: var(--accent-neon);
+  box-shadow: 0 0 40px rgba(217, 253, 49, 0.1);
+  transform: scale(1.05);
+  z-index: 2;
+  background: rgba(10, 12, 0, 0.8);
+  animation: floatCard 3.5s ease-in-out infinite, glowPulse 3s ease-in-out infinite, cardBorderGlow 2.5s ease-in-out infinite !important;
+  transform-style: preserve-3d;
+}
+
+.pricing-card.highlight:hover {
+  transform: scale(1.05) translateY(-10px);
+}
+
+.ultimate-card {
+  border: 2px solid rgba(59, 130, 246, 0.6) !important;
+  animation: electricPulse 2.5s ease-in-out infinite, electricFlicker 4s ease-in-out infinite, floatCard 5s ease-in-out infinite !important;
+}
+
+.ultimate-card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, rgba(59, 130, 246, 0.3), rgba(99, 102, 241, 0.2), rgba(59, 130, 246, 0.3));
+  border-radius: 18px;
+  opacity: 0.5;
+  z-index: -1;
+  pointer-events: none;
+  animation: electricPulse 2.5s ease-in-out infinite;
+}
+
+.plan-badge {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent-neon);
+  color: #000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 0.25rem 1rem;
+  border-radius: 20px;
+  font-family: var(--font-main);
+  font-weight: 800;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1;
+  white-space: nowrap;
+  z-index: 3;
+  box-shadow: 0 10px 28px rgba(217, 253, 49, 0.2);
+  transform: translateX(-50%) translateZ(36px);
+}
+
+.pricing-card.highlight .plan-name {
+  margin-top: 0.35rem;
+}
+
+.plan-name {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-align: center;
+  transform: translateZ(20px);
+}
+
+.plan-price-box {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  font-family: var(--font-main);
+}
+
+.current-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.price-val {
+  font-size: 3rem;
+  font-weight: 900;
+  font-family: var(--font-main);
+}
+
+.price-suffix {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.plan-for {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  min-height: 40px;
+}
+
+.plan-btn {
+  width: 100%;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.plan-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.32), transparent);
+  transform: translateX(-120%);
+  transition: transform 0.55s ease;
+}
+
+.plan-btn:hover::after {
+  transform: translateX(120%);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--accent-neon);
+  color: var(--accent-neon);
+}
+
+.btn-outline:hover {
+  background: rgba(217, 253, 49, 0.1);
+}
+
+.plan-features {
+  flex-grow: 1;
+}
+
+.features-title {
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.plan-features ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.plan-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.feat-icon {
+  color: var(--accent-neon);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.payment-section {
+  margin: 5rem auto 0;
+  padding: 2rem;
+  max-width: 1040px;
+  display: grid;
+  grid-template-columns: 0.9fr 1.35fr;
+  gap: 2rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 18px;
+  border-color: rgba(120, 220, 255, 0.16);
+  transform-style: preserve-3d;
+}
+
+.payment-section::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background:
+    linear-gradient(120deg, rgba(120, 220, 255, 0.12), transparent 34%),
+    linear-gradient(300deg, rgba(217, 253, 49, 0.12), transparent 34%);
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+.payment-copy,
+.payment-options {
+  position: relative;
+  z-index: 1;
+}
+
+.payment-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+  color: var(--accent-neon);
+  font-family: var(--font-main);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.payment-copy h3 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.05;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+}
+
+.payment-copy p {
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.payment-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  perspective: 900px;
+}
+
+.payment-option {
+  min-height: 190px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.22);
+  box-shadow: inset 0 0 24px rgba(120, 220, 255, 0.035);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  transform-style: preserve-3d;
+}
+
+.payment-option:hover {
+  border-color: rgba(217, 253, 49, 0.28);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24), inset 0 0 28px rgba(217, 253, 49, 0.045);
+}
+
+.payment-icon {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #050505;
+  background: linear-gradient(135deg, #78dcff, var(--accent-neon));
+  border-radius: 12px;
+  box-shadow: 0 0 24px rgba(217, 253, 49, 0.16);
+  transform: translateZ(20px);
+}
+
+.payment-option strong {
+  font-family: var(--font-main);
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.payment-option span:last-child {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .pricing-card.highlight {
+    transform: scale(1);
+  }
+  
+  .pricing-card.highlight:hover {
+    transform: translateY(-10px);
+  }
+
+  .payment-section {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-options {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-option {
+    min-height: auto;
+  }
+}
