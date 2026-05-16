@@ -4,6 +4,8 @@ import { Play, TrendingUp, Users, Zap } from 'lucide-react';
 import './Hero.css';
 
 const STAR_COUNT = 320;
+const HERO_VIDEO_SPEED = 0.35;
+const HERO_VIDEO_CROSSFADE_SECONDS = 0.85;
 
 const StarfieldBackground = () => {
   const canvasRef = useRef(null);
@@ -178,10 +180,112 @@ const FloatingBadge = ({ icon: Icon, title, subtitle, delay, x, y }) => (
 
 const Hero = () => {
   const titleWords = ['not', 'just', 'an'];
+  const heroVideoRef = useRef(null);
+  const heroOppositeVideoRef = useRef(null);
+  const activeHeroVideoRef = useRef(0);
+  const isCrossfadingVideoRef = useRef(false);
+  const [activeHeroVideo, setActiveHeroVideo] = useState(0);
+
+  useEffect(() => {
+    const videos = [heroVideoRef.current, heroOppositeVideoRef.current].filter(Boolean);
+    let animationFrame;
+    let resetTimer;
+
+    const syncVideoSpeed = (video) => {
+      video.playbackRate = HERO_VIDEO_SPEED;
+    };
+
+    const resetVideo = (video) => {
+      video.pause();
+      video.currentTime = 0;
+      syncVideoSpeed(video);
+    };
+
+    const playVideo = (video) => {
+      syncVideoSpeed(video);
+      video.play().catch(() => {});
+    };
+
+    const crossfadeToNextVideo = () => {
+      if (isCrossfadingVideoRef.current || videos.length < 2) {
+        return;
+      }
+
+      const currentIndex = activeHeroVideoRef.current;
+      const nextIndex = currentIndex === 0 ? 1 : 0;
+      const currentVideo = videos[currentIndex];
+      const nextVideo = videos[nextIndex];
+
+      isCrossfadingVideoRef.current = true;
+      resetVideo(nextVideo);
+      playVideo(nextVideo);
+
+      activeHeroVideoRef.current = nextIndex;
+      setActiveHeroVideo(nextIndex);
+
+      resetTimer = window.setTimeout(() => {
+        resetVideo(currentVideo);
+        isCrossfadingVideoRef.current = false;
+      }, 1400);
+    };
+
+    const watchVideoLoop = () => {
+      const activeVideo = videos[activeHeroVideoRef.current];
+
+      if (
+        activeVideo?.duration
+        && Number.isFinite(activeVideo.duration)
+        && activeVideo.duration - activeVideo.currentTime <= HERO_VIDEO_CROSSFADE_SECONDS
+      ) {
+        crossfadeToNextVideo();
+      }
+
+      animationFrame = window.requestAnimationFrame(watchVideoLoop);
+    };
+
+    if (videos.length < 2) {
+      videos.forEach(playVideo);
+      return undefined;
+    }
+
+    videos.forEach(syncVideoSpeed);
+    resetVideo(videos[1]);
+    playVideo(videos[0]);
+    videos.forEach((video) => video.addEventListener('ended', crossfadeToNextVideo));
+    watchVideoLoop();
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      window.clearTimeout(resetTimer);
+      videos.forEach((video) => video.removeEventListener('ended', crossfadeToNextVideo));
+    };
+  }, []);
 
   return (
     <section className="hero">
-      <div className="hero-bg-image" aria-hidden="true"></div>
+      <video
+        ref={heroVideoRef}
+        className={`hero-bg-video ${activeHeroVideo === 0 ? 'is-active' : ''}`}
+        aria-hidden="true"
+        autoPlay
+        muted
+        playsInline
+        preload="auto"
+        poster="/cosmic-night-bg.jpg"
+      >
+        <source src="/moonlit-canyon-desert.mp4" type="video/mp4" />
+      </video>
+      <video
+        ref={heroOppositeVideoRef}
+        className={`hero-bg-video hero-bg-video-secondary ${activeHeroVideo === 1 ? 'is-active' : ''}`}
+        aria-hidden="true"
+        muted
+        playsInline
+        preload="auto"
+        poster="/cosmic-night-bg.jpg"
+      >
+        <source src="/moonlit-canyon-desert.mp4" type="video/mp4" />
+      </video>
       <StarfieldBackground />
       <div className="hero-bg-overlay"></div>
 
